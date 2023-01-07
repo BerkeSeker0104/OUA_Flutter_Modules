@@ -187,16 +187,16 @@ void main () {
 
   // for döngüsü while döngüsünün gelişmiş halidir.
 
- /* for (;baslangic < bildirimsayisi;) {    yandaki for döngüsü yukarıdaki while döngüsü ile aynı işlevde.
+  for (;baslangic < bildirimsayisi;) {    yandaki for döngüsü yukarıdaki while döngüsü ile aynı işlevde.
     print("$baslangic.bildirim");
     baslangic += 1;
-  } */
+  } 
 
-  /*
+  
   for ( var baslangic = 0;baslangic < bildirimsayisi;aslangic += 1) { bu for döngüsünün diğerlerinden hiç bir farkı yok.
   print("$baslangic.bildirim");
   }
-   */
+   
 
 }
 
