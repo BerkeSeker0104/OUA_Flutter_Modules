@@ -201,11 +201,3 @@ void main () {
 }
 
 
-
-// List, set ve map
-
-// list: sıralı elemanlar
-
-void main() {
-
-}
