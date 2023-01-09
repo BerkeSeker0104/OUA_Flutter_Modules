@@ -165,6 +165,7 @@ switch (mesajsayisi) {
 while, do while, for, for in, break ve contine
  */
 
+}
 
 void main () {
   print("Hoş geldiniz!");
@@ -310,8 +311,86 @@ final arkadaslar = {'ali', 'ayşe', 'mehmet'};
   };
    */
   
+  }
   
+  
+// Nesneler ve Referanslar
+
+// Değişkenler değer tutmaz, değişkenler değerlere referans tutar.
+
+/*
+Telefon rehberinde ali diye biri kayıtlı olarak düşün bu değişken oluyor,
+ali ye tıkladığında içindeki numara gözükecek bu referans oluyor.
+aradığında ali ile konuştuğunda bu değer oluyor.
+ */
+
+void main() {
+
+  final liste = [
+    {'a', 'b'},
+    {'c', 'd'},
+    {'e', 'f'},
+  ];
+
+  print(liste);
+
+  final ikinci = liste[1]; // liste den ikinciyi referans aldık
+
+  ikinci.remove('c'); // referansta değişiklik yaptık ve bu hem ikinci hem liste değişkeninde değişti
+
+  print(ikinci);
+  print(liste);
+
+ // not : değişkenlerin referans tuttuğunu unutursak yanılabiliriz.
+ /*
+  yukarıdaki örnekte çok sık yapılan bir hatadır.
+  sen sadece ikinciyi değiştirdiğini sanarsın,
+  fakat orijinal listdeki elemanıda değiştirirsin.
+  */
+
+  var liste1 = [1, 2, 3];
+  var liste2 = [4, 5, 6];
+
+  print('liste1; $liste1');
+  print('liste2 : $liste2');
+
+  liste1 = liste2; //İkisi aynı liste olacak, birinde değişim yaparken diğeride değişecek
+
+  print('= sonrası');
+  print('liste1; $liste1');
+  print('liste2 : $liste2');
+
+  liste1[0] = 10; //liste1 değiştirdik bakalım liste2 değişecek mi
+
+  print('10 yaptıktan sonra');
+  print('liste1; $liste1');
+  print('liste2 : $liste2');
+
+  // yukarıda gördüüğün üzere ikiside değişti
+
+
+
+  // Immutable: değişmez, mutable: değişebilir
+
+int a = 5;
+int b = 5; // a ve b değişkenleri aynı referansa sahipler
+
+  String s = "merhaba"; // immutable değişken
+
+  final s2 = s.replaceFirst('er', 'to');
+
+  print(s); // s değişkeni immutable olduğu için değişmedi
+  print(s2); // ".replaceFirst" s değişkenin kopyasını oluşturdu ve değişim yaptı.
+
+
+  // Immutable : değişkende değer var illüzyonu çalışıyor,
+  // Mutable : değişkenimi birisi değiştirmiş ! (referans olduğunu unutursak)
+
 
 }
+
+
+
+
 
 
