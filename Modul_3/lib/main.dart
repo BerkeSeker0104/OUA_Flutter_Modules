@@ -196,7 +196,121 @@ void main () {
   for ( var baslangic = 0;baslangic < bildirimsayisi;aslangic += 1) { bu for döngüsünün diğerlerinden hiç bir farkı yok.
   print("$baslangic.bildirim");
   }
-   
+
+  
+  // List, set ve map
+
+// list: sıralı elemanlar
+
+void main() {
+
+  final mesajlar = ["a", "b", "c"];
+
+  print(mesajlar);
+  
+  print(mesajlar[0]); // Listenin ilk terimi "[0]" şeklinde kullanılıyor, böylece listenin ilk elemanı çağrılır.
+
+  mesajlar.add("d"); // Terim eklemek için ".add" kullanıyoruz.
+  print(mesajlar);
+
+  mesajlar.addAll(["e", "f"]); // "addAll" bütün terimleri ekliyor.
+  print(mesajlar);
+
+  print('${mesajlar.length} adet mesaj var.');  // ".length" sayesinde listede kaç eleman var görebilirsin.
+
+  if (mesajlar.contains("a")) {
+    print("a var");
+  } else {
+    print("a yok");
+  }
+
+  mesajlar[0] = "A"; // ilk elemanı değiştirdik, "a" ==> "A" halini aldı.
+  print(mesajlar);
+
+  mesajlar.remove('A'); // Listeden eleman silmek için "remove" kullandık.
+  print(mesajlar);
+
+
+  print(mesajlar.first); //Listenin ilk elemanını görebilirsin.
+  print(mesajlar.last); //Listenin son elemanını görebilirsin.
+
+  if (mesajlar.isNotEmpty) {
+    print("Liste boş değil");
+
+  } else {
+    print("Liste boş");
+  }
+
+
+  for (final mesajlar in mesajlar) { //For döngüsü ile listenin elemanlarını görebiliyoruz.
+    print(mesajlar);
+  }
+
+
+
+// Set ==> Sırasısz elemanlar, her elemandan bir tane
+
+final arkadaslar = {'ali', 'ayşe', 'mehmet'};
+  print(arkadaslar);
+
+  arkadaslar.add("özge"); // set ".add" ile ekleme yapabiliriz, aynı list deki gibi.
+  print(arkadaslar);
+
+  print("özgeyi tekrar ekelemeye çalışalım");
+
+  arkadaslar.add('özge'); // Gördüğün üzere eklenmedi, her elemandan yalnızca bir tane
+  print(arkadaslar);
+
+  //  print(arkadaslar[0]); bunu çalıştımak istediğimiz de hata verecek, set de bu olmuyor.
+
+  print(arkadaslar.first);
+  print(arkadaslar.last);
+
+  print(arkadaslar.length); //Set eleman sayısını bulmak için ".length" kullandık.
+
+  final baska_set = arkadaslar.intersection({'ayşe', 'mehmet', 'berke'}); // burada farklı bir set ile arkadaslar setindeki kesişim elemanlarını görücez.
+  print(baska_set);
+
+
+
+
+  // MAp ==> bir tür elemandan diğer tür elemana
+
+
+
+  final etiketler = {
+  "arkadaslar" : 2,
+  "okul": 5,
+    'iş': 8,
+  };
+
+  print(etiketler);
+
+  print(etiketler['iş']); // map de iş değerinde kaç kişi olduğunu böyle görebilirsin,
+  etiketler['iş'] = 9; // mapde değeri böyle değiştirebilirsin,
+  print(etiketler);
+
+  if (etiketler.isNotEmpty) {
+    print("Map boş değil");
+  }else {
+    print("Map boş");
+  }
+
+  print(etiketler.containsKey('okul')); // Map de bu keyden var mı diye sorabilirsin ==> ture ya da false cevabı alacaksın
+
+
+  // Generic Türler ==> türlere gelen parametreler
+
+  // Örnek : yukarıdaki etiketler üzerine gel ve alt + enter, add type annoctation bas türünü ve türe gelen parametreyi görecesin
+
+  /*final Map<String, int> etiketler = {  burada bu bir map ve içerisine int şeklinde yazman gerekiyor diyor.
+  "arkadaslar" : 2,
+  "okul": 5,
+    'iş': 8,
+  };
+   */
+  
+  
 
 }
 
