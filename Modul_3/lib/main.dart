@@ -389,6 +389,325 @@ int b = 5; // a ve b değişkenleri aynı referansa sahipler
 
 }
 
+// Class
+
+/*
+Map ==> içerik kesin değil, türler yok
+
+Class ==> içerik değişkenlerle temsil ediliyor, türler var
+ */
+void main () {
+
+  // Aşağıda öğrencinin adı, soyadı, yaşı, cinsiyeti, sınav notu olan bir fonksiyon yazalım
+  // bu fonksiyonu map ile yapıcaz.
+
+  final ogrenci = {
+    "adı" : "Berke",
+    "soyadı" : "Şeker",
+    "yasi" : 22,
+    "cinsiyeti" : "erkek",
+    "sınav notu" : "70",
+  };
+
+print(ogrenci);
+
+/*
+ map ile yaptığımız için ikinci bir öğrenci bilgilerini doğru girmek bizim insiyatifimize kalmış,
+ şimdi class ile yapalım bakalım ne olacak
+ */
+
+
+
+  final berke = Ogrenci("berke", "şeker", 22, "erkek", 70);
+  final ozge = Ogrenci("Özge", "Ersoy", 21, "kadın", 100);
+
+  print(berke.adi);
+  print(ozge); // bunu override etmediğimden dolayı çalıştırınca Instance of 'Ogrenci' bu yazacak
+              // class içinde override yapalım
+              // override yaptıktan sonra   "Özge Ersoy 21 kadın 100" şeklinde yazacak.
+
+  if (berke.ortalamininUstendiMi(80)) {
+    print("Bravo berke!");
+  }
+  if (ozge.ortalamininUstendiMi(80)){
+    print("Bravo özge!");
+  }
+  
+  print(Ogrenci.okulAdi); // bunu class içinde static ile global fonksiyon olduğu için çalıştı.
+}
+
+
+class Ogrenci {
+
+  static String okulAdi = "Yıldız Teknik Üniversitesi";
+
+
+  String adi;
+  String soyadi;
+  int yasi;
+  String cinsiyeti;
+  int notu;
+
+  Ogrenci(this.adi, this.soyadi, this.yasi, this.cinsiyeti, this.notu);
+
+  bool ortalamininUstendiMi (int ortalama) {
+    return notu > ortalama;
+  }
+
+  @override
+  String toString() {
+    return "$adi $soyadi $yasi $cinsiyeti $notu";
+  }
+}
+/*
+   class da özel fonksiyonlar kullanıyoruz, bunun için "alt + insert" tuşuna bas,
+   constructor tıkla hepsini seç ve oluştur.
+
+   Not : class'ı main dart alanında oluşturursan class hata verir.
+   */
+
+/*
+Class : static field and method
+global değişken ve fonksiyon
+
+class içinde static şeklinde tanımladığımız elemanlar sanki global fonksiyonlar gibi çalışıyor.
+ */
+
+  // NULL SAFETY
+
+
+/*
+Nul referans :  null ==> böyle bir şey yok demektir
+
+Non-Nullable : mutlaka bir nesneye bakan referans vardır.(String.s;)   değişken ==> değer
+
+Nullable : nesneye bakmama opsiyonu var. (String? s;)  değişken ==> değer ya da değişken ==> X null
+
+------------------------------------------------------------------------------
+
+Neden Non-Nullable ?
+
+çalışma anında oluşabilecek bir çok hatayı önler.
+Gereksiz kontrolleri ekarte eder, app çok daha verimli olur.
+
+------------------------------------------------------------------------------
+
+Null'dan kurtulamaz mıyız ?
+
+Kullandığımız kütüphaneler bazen Null'ı kullanır.
+Örn.map[key] bir nullable tür döner.
+------------------------------------------------------------------------------
+Nullable Referanslar ile başa çıkmak :
+
+1) Null assertion : nonNulableRef = nullableRef! (Bize gelen nullable referansın
+sonuna ünlem işareti koyuyoruz, diyoruz ki evet bu bir nullable bir referans ama
+ben biliyorum bu bunu, bu bir null değil.Dolayısıyla lütfen bunu bana
+non-nullable gibi kullanmama izin ver" diyoruz.)
+
+2) Type Promotion :
+ıf (nullableRef!= null) nonNullableRef = nullableRef (Eğer null mı diye kontrol
+ediyoruz referansımız (değişkenimiz) ve de eğer null değilse, o if'in null
+olmayan kısmına geldiğimizde artık bu değişkenimize non-nullable muamelesi
+yapıyor Dart. Yani burada ünlem koymama gerek kalmadan non-nullable olarak
+kullanabiliyorum artık. Bu çok güzel bir şey, non-nullable olarak kullanmamıza
+izin veriyor aslında nullable olan değeri.)
+
+3) Null-aware operatörler :
+
+nullableRef?.field
+nullable??nonNullableRef
+nullable??=nonNullableRef
+(Bir nullable referans elimize geldiğinde ?. diyerek "Eğer bu null ise bu da
+null olsun komple. Eğer bu null değilse, o zaman onun içindeki field'a bakalım"
+ demiş oluyoruz. Eğer bu null ise, soru işaretsiz .field dersek bir hata oluyor.
+  Program hata veriyor. Fakat ?.field diyerek "eğer yoksa komple null olsun"
+  demiş oluyoruz. Nullable bir değişkenin sonuna ?? koyup başka bir değer
+  verdiğimizde, eğer bu soldaki null ise sağdakini alıyor bu expression değer
+   olarak eğer bu soldaki null değilse, soldakini alıyor expression değer
+   olarak. Yani bu null ise şunu al anlamında. Bunun yanına bir de =
+   koyduğumuzda eğer soldaki değişken null ise, sağdakini soldakinin içine
+   atıyor. Bir assignment yapıyor. Bu da faydalı bir operatör.)
+ */
+
+void main () {
+  print("Merhaba!");
+
+  String s;
+
+  // print(s); bu kod hata verecektir çünkü nonnullable olduğu için bir şey göstermeli.
+
+  s ="ali"; // s' e bir şey gösterdik artık print(s); çalışacak.
+  print(s);
+
+
+  String? sn;
+
+  print(sn); // bunu printlediğinde null alacaksın
+ // print(sn.length);  // bunu yaptığında hata alacaksın ve kodun çalışmayacak
+  
+ // print(sn!.length);  Bunu yaptığında kodun çalışacak fakat  hata verecek
+
+  // "sn" değer atarsak ünlem işareti gereksiz kalıyor.
+
+  sn = "ali";
+  print(sn!.length); // ünleme ihtiyacı olmadığını söylüyor burada bu null değil dedi.
+
+  /*
+  Ayşe'nin internetten bulduğu bir kodun içinde değişken tanımlalarında
+  kullanılan class isimlerinin yanında soru işaretleri, değişkenler
+  kullanılırken de isimlerinin yanlarında ünlem işaretleri görüyor.
+  Ayşe bunların ne anlama geldiğini anlamaya çalışıyor. Bu konuda doğru
+  olan seçenekleri seçerek ona yardımcı olur musunuz?
+
+I. pubspec.yaml dosyasında environment bölümünde sdk versiyonunun minimum değeri
+ 2.12.0'dan aşağıda ise soru ve ünlem işaretlerini bu şekilde kullanamayız.
+
+II.Bu işaretlerin kullanıldığı bir projede bir Dart dosyasının başına şunu
+yazarsak bu işaretleri kullanamayız: // @dart=2.9
+
+IV. Değişken kullanımında değişkenden sonra gelen ünlem işareti, o değişkenin
+null olmadığından emin olduğumuzu belirterek onu null olmayan türe çevirmemizi sağlar.
+
+VI.String ile String? birbirinden farklı iki veri türüdür.
+   */
+
+
+}
+  
+// HATA YAKALAMA
+
+/*
+Hata (exception) :
+
+try {
+
+kod satırları;
+kod satırları;
+
+hata oluşturan satır;
+hatadan dolayı çalışmayan satırlar;
+hatadan dolayı çalışmayan satırlar;
+
+} catch(e){
+      hataya çare olan satırlar:
+ }
+
+
+
+
+
+
+HATA YAKALAMA :
+
+try {
+
+}on Exception catch (e) {
+    //potansiyel hata, hatanın çaresi, türü ve içeriği, kullanılıyor.
+
+}
+
+
+try {
+
+}on Exception {
+    //potansiyel hata, sadece türü ve içeriği, kullanılıyor.
+
+}
+
+
+try {
+
+} catch (e) {
+    //potansiyel hata, her türlü hata,  içeriği kullanılabilir.
+
+}
+
+
+*/
+
+void main () {
+
+  print("Merhaba!");
+
+  try {
+    String? s=null;
+    print(s!.length);
+    double.parse("Bu bir double değil");
+  } on FormatException catch (e) {
+    print("Format exception oldu!");
+  } catch (e){
+    print("başka bir hata oldu!");
+  }
+  
+ 
+
+/*
+Hatanın Yükselmesi : Hatanın olduğu fonskiyondan itibaren dışarı doğru hata
+yükselir.
+
+ilk uygun try bloğu ile hata yakalanır.
+ */
+
+
+
+/*
+finally :
+ try{
+
+}on Exception{
+
+} finally {
+        // hata olsada olmasada, yakalansada yakalanmasada çalışır.
+}
+ */
+
+  returnEdecek();
+}
+
+void returnEdecek() {
+  try {
+    print('>main');
+    return;  // return ekleyince FINALLY den sonrası çalışmıcak.
+    hataliKoduCagiran();
+    print('<main');
+  } on FormatException catch (e) {
+    print('format exception oldu!');
+    rethrow;
+  } catch (e) {
+    print('başka bir hata oldu!');
+    print(e);
+  } finally {
+    print('FINALLY!');
+  }
+  print('FINALLY\'DEN SONRA!');
+}
+
+void hataliKoduCagiran() {
+  print('>hataliKoduCagiran');
+  hataliKod();
+  print('<hataliKoduCagiran');
+}
+
+void hataliKod() {
+  print('>hataliKod');
+  throw new Exception('HATA VAR!');
+  double.parse("bu bir double değil");
+  String? s = null;
+  print(s!.length);
+  print('<hataliKod');
+
+
+/*
+throw : kendimizin "bir sorun var!" diyerek hata yaratmamız
+
+if (olmaması gereken bir durum mu oldu ? ) {
+throw Exception ('Böyle olmamalıydı');
+}
+ */
+
+
+
+}
 
 
 
