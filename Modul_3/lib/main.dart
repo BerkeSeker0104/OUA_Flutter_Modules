@@ -710,6 +710,54 @@ throw Exception ('Böyle olmamalıydı');
 }
 
 
+  
+  
+// Flutter lints ile temiz kod 3.8
+
+/*
+Linter: kodu temizleme
+
+normalde beklenen kod tarzını belirleyen kurallar dizisi
+
+bu kurallara uymayan kod var ise
+
+      düzeni bozacağı için düzeltilmeli
+
+      düzelterek oluşabilecek bazı önleyebiliriz.
+ */
+
+void main () {
+
+//  String? s = null; linter ünlem işareti ile seni uyardı, alt + enter yaparsan linter düzeltecek.
+  String? s;
+  print(s);
+
+
+  print("Hoşgeldin 3.8 derse!");
+
+
+  /*
+  Linter ayarları :
+
+  pubspec.yaml'a flutter_lints'i dev dependency olarak seçiyoruz
+
+  analysis_options.yaml dosyası ile kuralları seçiyoruz
+
+   */
+
+
+
+  /*
+  Örnek linter kuralları
+
+  kural listesinde kural seçme
+  IDE'nin içinde kural ihlali görme
+  Quick Fix ile çözmeyi deneme
+   */
+
+  const i = 5;
+  print(i);
+}
 
 
 
