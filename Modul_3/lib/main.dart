@@ -760,4 +760,69 @@ void main () {
 }
 
 
+  
+  
+
+  // Kütüphane kullanma 3.9
+
+/*
+Package bulma ve kullanma :
+
+Package : pub.dev sitesinden listelenmiş
+
+kolayca kullanılabilen bir kütühane
+
+kütüphane
+
+    pubspec.yaml dosyasında  dependencies  kısmına ekliyoruz.
+    flutter pub get ile indirip projeyi ekliyoruz.
+
+ */
+
+import 'package:english_words/english_words.dart';
+import 'package:uuid/uuid.dart';
+
+void main () {
+
+
+  /*
+  pubspec.yaml dosyasısından kütüphane eklemesi yapmak için ;
+
+  pub.dev gidin oradan istediğinizi seçin
+
+  pubspec.yaml deki "dev_dependencies:"  kısmının üstündeki
+
+  "cupertino_icons: ^1.0.2" yerin altındaki kısma pub.dev seçtiğinizi ekleyebilirsin
+
+
+  kısa yol olarak : pub.dev seçtiğin kütüphanedeki install kısmına geldiğinde
+
+  with flutter kısmında ki kodu terminale yapıştırabilirsin. otomatik eklenecek.
+   */
+
+ print(generateWordPairs().first); // english_words kütüphaneye eklemiştim ve yanda bir örneği mevcut.
+
+ var uuid = Uuid(); // uuid kütüphaneye eklemiştik yandaki onun örneği
+
+ // Generate a v1 (time-based) id
+ var v1 = uuid.v1(); // -> '6c84fb90-12c4-11e1-840d-7b25c5ee775a'
+
+  print(v1);
+
+  // Package uyumsuzlukları
+
+  /*
+  iki package birlikte kullanılmyabiliyor.
+  ikisinin kullandığı ortak package için versiyon anlaşmazlığı olabiliyor.
+
+          uuid 3.0.4 - crypto 3.0.0
+          dartx 0.5.0 - crypto 2.1.0
+
+   package'lerin farklı versiyonlarını deneyerek sorunu çözebiliriz.
+
+         dartx 0.7.1 - crypto 3.0.0
+   */
+
+
+}
 
