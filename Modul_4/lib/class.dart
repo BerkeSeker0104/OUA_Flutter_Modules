@@ -26,6 +26,8 @@ void main() {
 
   ogrenci O1 = ogrenci("Özge", 22);
   ogrenci O2 = ogrenci("Berke", 22);
+  
+  // class ogrenci.dart kısmında onun ile birlikte bak.
 
  /*
   O1._yas +=1;  bu özelliği private yaptığımız için class dışında çalışmıyor.
