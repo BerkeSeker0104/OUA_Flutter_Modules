@@ -46,7 +46,7 @@ void main () {
   print(iterable.first);
   print(iterable.last);
   print(iterable.firstWhere((element) => element % 4 ==0));
-  // 25 satırdaki kodumuzda ilk dörde bölümden kalan sıfır olan elemanı ekrana yazar.
+  // 48 satırdaki kodumuzda ilk dörde bölümden kalan sıfır olan elemanı ekrana yazar.
 
   if (iterable.any((element) => element %11 == 12)) {
     print("Elemanın 11 ile bölümünden kalan 12'dir");
