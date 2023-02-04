@@ -1,0 +1,109 @@
+Flutter'a Giriş
+
+pubspec.yaml ile gelen kütüphaneler
+    pubspec.yaml'ı açınca üstte pub get var ona basınca kütüphaneler yükleniyor
+        Kütüphaneler External Libraries'te gözükür
+
+App'i Çalıştırmak
+    main() fonksiyonun olduğu .dart dosyasını çalıştırıyoruz
+        komut satırından -> flutter run lib/main.dart
+            Android studio'da ise :
+                run configıration ya da debug ile çalıştırıyoruz
+Run ve Debug aynı şeyler fakat Debug ile ek olarak breakpointlerde durabiliyoruz
+    Debug ile çalıştırmaya alışın
+
+Dart ve Flutter
+    önce telefona android veya ios klasöründeki taşıyıcı uygulama atılır
+        Bunun içinde Dart kodumuz main() fonk. çalışmaya başlar
+            runApp() fonksiyonuna verilen widget ile flutter başlar
+                Telefonun ekranını kullanmya başlar
+
+Uygulamanon Çalışması
+    runApp()'e bir widget veriyoruz
+    widget yaratılır
+        Eğer StateWidget ise State'i yaratılır
+            az somra State'in initState() fonksiyonu çağırılır
+    Zamanı gelince ara sıra bu widget'in build() fonksiyonu çağırılır
+        Bunun içinde widgetler yaratılır
+
+    Butona basma gibi olaylar ile fonksiyonlar çağırılır
+        orada setState yaparsak build() fonk çağırılır
+
+-------------------------------------------------------------------------------------
+
+Widget Kavramı
+
+runApp()'e verdiğimiz widget herhangi bir widget olabilir.
+    Genellikle MaterialApp'in görsel widgetlardan önce gelir.
+
+widget ağacı
+    kodumuzla widget'lar yaratarak ve
+        child/children ile bir ağaç oluştururuz.
+            Koddaki ağaç: Flutter Outline/ Structure
+
+body: Center (
+    child: Column(
+        children: <Widget> [
+            Text("You have pushed the button..."),
+            text("$_counter"),
+            ],
+        ),
+    ),
+
+Structure : kodumuzun özetini ve belli bir ağacımızı görebiliriz.
+
+flutter outline: Structure ile benzerdir ama daha fazla detay gösteriyor
+
+Flutter Inspector : gerçekleşen ağaç yapısını görebiliyoruz,
+                        widgetleri seçerek görebiliyoruz.
+
+
+Widget'ların Yenilenmesi
+
+Hot reload yaptığımızda:
+    Dosyaları değiştirdiğimizde bu değişiklikler uygulamaya girer.
+        Uygylamayı baştan başlatmadan, çalışan uygulama değişir.
+
+Ayrıca uygulamanın en üst widgetinin build() fonksiyonu tekrar çağırılır
+    çok hızlı bir şekilde ekran yeni kod ile güncellenir.
+
+
+Hot Restart
+    Hot reload mevcut nesneleri hafızada tutarak çalışır
+        State nesnelerine yeni değişkenler eklersek bunlar eski nesnede bulunmaz
+            Bu durumlarda hot restart ile uygulamayı baştan başlatırız
+                Uygulama main() fonksiyonu tekrar çağrılarak en baştan başlar.
+
+Stop-Start
+    Hot restart yetersiz kalabiliyor,
+        yeni kütüphaneler eklersek bunlar hot restart ile uygulamaya geçemez
+            bu durumda da uygulamayı durdurup baştan başlatırız
+
+
+--------------------------------------------------------------------------------------
+
+Flutter Inspector
+
+"şu widget'ın kodu nerede?" "ekranın şurası hangi widget'a ait ?"
+    "Şu widget'ın boyutları tam olarak nedir ?"
+        Flutter Inspector bu konularda yardımımıza koşuyor
+            Geliştirme esnasında emulator/ cihaz ile parelel kullanıyoruz
+
+Gerçekleşen widget ağacı koddakinden çok farklı olabilir
+    loop, if, vs. akışı değiştirebilir
+        bundan dolayı yardımımıza flutter inspector koşuyor.
+
+
+bir widget koduna gitmek
+    Toggle select widget mode
+        App'te widget'a basıyoruz ve bize gösteriyor
+
+
+Derindeki widgetler
+    flutter inspector'da gördüğümüz wdiget'lar bizim kodumuzdakiler
+        Kullandığımız widget'ların içinde aslında başka widget'lar da var.
+            Details Tree'da bunları görebiliriz
+
+Layout Explorer
+    seçtiğimiz widget'ın konumlandırma ve pozisyonlanma ile ilgili detaylar sunar
+        ve değiştirebiliyoruz hızlı bir şekilde
